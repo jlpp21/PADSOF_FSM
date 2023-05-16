@@ -1,0 +1,3 @@
+Cuarta Entrega
+
+Se pide completar la siguiente plantilla de Documento de Pruebas para el proyecto realizado, detallando dos casos de prueba.

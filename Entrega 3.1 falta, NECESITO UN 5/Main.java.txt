@@ -1,0 +1,37 @@
+package test_payrollsystem;
+
+import java.time.Month;
+import java.time.Year;
+
+import es.uam.eps.padsof.payrolls.ICompanyInfo;
+import es.uam.eps.padsof.payrolls.IEmployeeInfo;
+import es.uam.eps.padsof.payrolls.PayrollSystem;
+import es.uam.eps.padsof.payrolls.exceptions.InvalidPeriod;
+import es.uam.eps.padsof.payrolls.exceptions.NonExistentFileException;
+import es.uam.eps.padsof.payrolls.exceptions.UnsupportedImageTypeException;
+
+class ACompany implements ICompanyInfo { // Just an example implementation 
+	@Override public String getName()    { return "My Gym"; }
+	@Override public String getLogo()    { return "./resources/logo.png"; } // jpg, gif and png formats are supported	
+	@Override public String getCif()     { return "ES-00877893X"; }
+	@Override public double getBaseSalaryPerMonth() { return 900; }
+	@Override public double getRateHour() { return 5; }
+}
+
+class Employee implements IEmployeeInfo { // Just an example implementation 
+	@Override public String getName() { return "Mary Smith"; }
+	@Override public String getNif()  { return "09889456H"; }				
+}
+
+public class Main {
+	public static void main (String... args) throws NonExistentFileException, UnsupportedImageTypeException, InvalidPeriod {
+		PayrollSystem.createPayroll(
+			new ACompany(), 
+			new Employee(),
+			Month.FEBRUARY,
+			Year.of(2023),
+			3,
+			"./tmp/" // Output folder
+		);
+	}
+}
